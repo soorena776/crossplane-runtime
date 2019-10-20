@@ -70,7 +70,7 @@ type ReferenceStatus struct {
 }
 
 func (r ReferenceStatus) String() string {
-	return fmt.Sprintf("%s:%s,", r.Name, r.Status)
+	return fmt.Sprintf("{reference:%s status:%s}", r.Name, r.Status)
 }
 
 // referencesAccessErr is used to indicate that one or more references can not
@@ -92,7 +92,7 @@ func newReferenceAccessErr(statuses []ReferenceStatus) error {
 }
 
 func (r *referencesAccessErr) Error() string {
-	return fmt.Sprintf("Some of the referenced resources cannot be accessed. {%s}", r.statuses)
+	return fmt.Sprintf("%s", r.statuses)
 }
 
 // IsReferencesAccessError returns true if the given error is of type referencesAccessErr
