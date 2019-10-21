@@ -190,11 +190,7 @@ func (r *APIManagedReferenceResolver) ResolveReferences(ctx context.Context, mg 
 	}
 
 	// persist the updated managed resource
-	if err := r.client.Update(ctx, mg); err != nil {
-		return errors.WithMessage(err, errUpdateResourceAfterAssignment)
-	}
-
-	return nil
+	return errors.WithMessage(r.client.Update(ctx, mg), errUpdateResourceAfterAssignment)
 }
 
 // findAttributeReferencerFields recursively finds all non-nil fields in a struct and its sub types
